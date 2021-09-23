@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from "react";
-import theGuardian from "../utils/theGuardian";
+import theGuardian from "./utils/theGuardian";
 
-function Foreground() {
+function App() {
 
   return (
     <div style={styles.main}>
@@ -23,4 +23,4 @@ const styles = {
   // }
 };
 
-export default Foreground;
+export default App;

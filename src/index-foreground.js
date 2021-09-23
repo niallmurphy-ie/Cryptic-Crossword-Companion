@@ -1,10 +1,11 @@
 import React from "react";
+import { useState } from 'react';
 import { render } from "react-dom";
 
-import Foreground from "./components/Foreground.js";
+import App from "./App.js";
 import theGuardian from "./utils/theGuardian";
 
 // Create element for React
 theGuardian();
 
-render(<Foreground />, document.querySelector("#cryptic_crossword_help"));
+render(<App />, document.querySelector("#cryptic_crossword_help"));
