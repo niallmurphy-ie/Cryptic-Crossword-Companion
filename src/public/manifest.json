@@ -1,6 +1,6 @@
 {
-    "name": "ReactJS Chrome Extension",
-    "description": "Using ReactJS to build a Chrome Extension",
+    "name": "Cryptic Crossword Helper",
+    "description": "Parse and give hints for clues on the Guardian",
     "version": "0.1.0",
     "manifest_version": 2,
     "icons": {
@@ -19,5 +19,5 @@
     "permissions": [
         "tabs",
         "<all_urls>"
-    ] 
+    ]
 }
