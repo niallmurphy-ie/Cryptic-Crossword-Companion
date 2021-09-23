@@ -3,9 +3,9 @@ import { useState } from 'react';
 import { render } from "react-dom";
 
 import App from "./App.js";
-import theGuardian from "./utils/theGuardian";
+import { theGuardianDiv } from "./utils/theGuardian";
 
 // Create element for React
-theGuardian();
+theGuardianDiv();
 
 render(<App />, document.querySelector("#cryptic_crossword_help"));

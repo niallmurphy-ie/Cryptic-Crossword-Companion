@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from "react";
-import theGuardian from "./utils/theGuardian";
 
 function App() {
+
 
   return (
     <div style={styles.main}>
