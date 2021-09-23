@@ -1,12 +1,12 @@
 import React from "react";
 import { useState } from "react";
+import theGuardian from "../utils/theGuardian";
 
 function Foreground() {
-  const [counter, setCounter] = useState(0);
+
   return (
     <div style={styles.main}>
       <h1>Chrome Ext - Foreground</h1>
-      <button onClick={() => setCounter(counter + 1)}>Click: {counter}</button>
     </div>
   );
 }
