@@ -9,7 +9,6 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
     changeInfo.status === "complete" &&
     allowedURLs.some((url) => tab.url.includes(url))
   ) {
-    console.log("CHHHHHHAAANNNGEEED");
     chrome.tabs.executeScript(
       tabId,
       { file: "./inject_script.js" },
