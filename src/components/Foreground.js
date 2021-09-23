@@ -9,15 +9,15 @@ function Foreground() {
 }
 
 const styles = {
-    main: {
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        zIndex: '1000',
-        fontSize: '80px',
-        pointerEvents: 'none'
-    }
+    // main: {
+    //     position: 'absolute',
+    //     top: '50%',
+    //     left: '50%',
+    //     transform: 'translate(-50%, -50%)',
+    //     zIndex: '1000',
+    //     fontSize: '80px',
+    //     pointerEvents: 'none'
+    // }
 }
 
 export default Foreground;

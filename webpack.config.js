@@ -46,25 +46,25 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             filename: 'popup.html',
-            template: 'src/popup.html',
+            template: 'src/html/popup.html',
             chunks: ['popup']
         }),
         new HtmlWebpackPlugin({
             filename: 'options.html',
-            template: 'src/options.html',
+            template: 'src/html/options.html',
             chunks: ['options']
         }),
         new HtmlWebpackPlugin({
             filename: 'foreground.html',
-            template: 'src/foreground.html',
+            template: 'src/html/foreground.html',
             chunks: ['foreground']
         }),
         new CopyWebpackPlugin({
             patterns: [
-                { from: 'src/manifest.json', to: '[name].[ext]' },
-                { from: 'src/background.js', to: '[name].[ext]' },
+                { from: 'src/public/manifest.json', to: '[name].[ext]' },
+                { from: 'src/public/background.js', to: '[name].[ext]' },
                 { from: 'src/inject_script.js', to: '[name].[ext]' },
-                { from: 'src/*.png', to: '[name].[ext]' }
+                { from: 'src/public/*.png', to: '[name].[ext]' }
             ]
         }),
         new CleanWebpackPlugin()
