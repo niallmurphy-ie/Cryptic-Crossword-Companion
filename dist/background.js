@@ -7,7 +7,8 @@ const allowedURLs = [
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
   if (
     changeInfo.status === "complete" &&
-    allowedURLs.some((url) => tab.url.includes(url))
+    allowedURLs.some((url) => tab.url.includes(url)) &&
+    !document.querySelector('#cryptic_crossword_help')
   ) {
     chrome.tabs.executeScript(
       tabId,

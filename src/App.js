@@ -1,32 +1,31 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import WatchGuardianClues from './utils/theGuardian'
-import { setupClueState } from "./utils/theGuardian";
+import watchGuardianClues, { setupClueState } from "./utils/theGuardian";
 
 function App() {
-  const [clues, setClues] = useState([]);
+  console.log("ENTER APP");
+  const [clues, setClues] = useState(null);
   const [currentActive, setCurrentActive] = useState("");
-  const [clueShown, setClueShown] = useState(null);
+  const [clueShown, setClueShown] = useState({clueText: ''});
   // Setup Clue State
   useEffect(() => {
     setClues(setupClueState);
   }, []);
   // Watch Clue Mutations and set current active clue
+  watchGuardianClues(setCurrentActive);
+  // // Set Clue Help Shown
+  useEffect(() => {
+    if (!clues || !currentActive) return;
+    setClueShown(clues[currentActive]);
+    console.log(clues);
+    console.log(clueShown);
+  }, [currentActive, clues]);
 
-  // Set Clue Help Shown
-  // useEffect(() => {
-  //   console.log(currentActive);
-  //   setClueShown(clues[currentActive]);
-  // }, [currentActive]);
-
+  //  <WatchGuardianClues setCurrentActive={setCurrentActive} currentActive={currentActive} />
   return (
-    <>
-      <WatchGuardianClues setCurrentActive={setCurrentActive} />;
-      <div style={styles.main}>
-        <h1>Chrome Ext - Foreground</h1>
-        <button onClick={() => console.log(currentActive)}>State</button>
-      </div>
-    </>
+    <div className="appRendered" style={styles.main}>
+      <h1>State: {clueShown.clueText ? clueShown.clueText : ''}</h1>
+    </div>
   );
 }
 

@@ -1,5 +1,30 @@
-import React from "react";
-import { useState, useEffect } from "react";
+const watchGuardianClues = (setCurrentActive) => {
+  const clues = document.querySelectorAll(".crossword__clue");
+  // Set timer as the guardian fires mutation twice
+  let recent = false;
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (
+        mutation.target.classList.contains("crossword__clue--selected") &&
+        !recent
+      ) {
+        recent = true;
+        console.log(mutation);
+        console.log(mutation.target.hash);
+        setCurrentActive(mutation.target.hash);
+        // Reset timer
+        setTimeout(() => (recent = false), 200);
+      }
+    });
+  });
+
+  clues.forEach((clue) => {
+    observer.observe(clue, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+  });
+};
 
 export const setupClueState = () => {
   const clues = document.querySelectorAll(".crossword__clue");
@@ -12,34 +37,4 @@ export const setupClueState = () => {
   return clueState;
 };
 
-const WatchGuardianClues = ({ setCurrentActive }) => {
-  console.log(setCurrentActive);
-  const clues = document.querySelectorAll(".crossword__clue");
-  // Set timer as the guardian fires mutation twice
-  let recent = false;
-  const observer = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-      if (
-        mutation.target.classList.contains("crossword__clue--selected") &&
-        !recent
-      ) {
-        console.log(mutation.target.hash);
-        recent = true;
-        setCurrentActive(mutation.target.hash);
-      }
-      // Reset timer
-      setTimeout(() => (recent = false), 100);
-    });
-  });
-
-  clues.forEach((clue) => {
-    observer.observe(clue, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
-  });
-
-  return <div></div>;
-};
-
-export default WatchGuardianClues;
+export default watchGuardianClues;
