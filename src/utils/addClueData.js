@@ -15,14 +15,14 @@ const returnAbbreviations = (clue) => {
     if (clue.includes(abbreviation)) {
       // Check for multiple words as these won't be mistakes
       if (countWords(abbreviation) > 1) {
-        abbArray.push(abbreviation + ": " + abbreviations[abbreviation].join(", "));
+        abbArray.push({[abbreviation]: abbreviations[abbreviation]});
       } else {
         // One word must be checked as it may be inside words
         var split = clue.split(" ");
         if (split.includes(abbreviation)) {
-          abbArray.push(abbreviation + ": " + abbreviations[abbreviation].join(", "));
+          abbArray.push({[abbreviation]: abbreviations[abbreviation]});
         } else if (split.includes(abbreviation)) {
-          abbArray.push(abbreviation + ": " + abbreviations[abbreviation].join(", "));
+          abbArray.push({[abbreviation]: abbreviations[abbreviation]});
         }
       }
     }
