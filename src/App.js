@@ -6,6 +6,10 @@ import watchGuardianClues, {
 } from "./utils/theGuardian";
 import Clue from "./components/Clue";
 import Note from "./components/Note";
+import {
+  setLocalStorageInitialState,
+  updateLocalStorage,
+} from "./utils/localStorage";
 
 function App() {
   const [clues, setClues] = useState(null);
@@ -23,29 +27,16 @@ function App() {
   watchGuardianClues(setCurrentActive);
   // Set Notes State
   useEffect(() => {
-    if (
-      localStorage.getItem("crypticCrossWordNotes") &&
-      localStorage.getItem("crypticCrossWordNotes") !== "null"
-    ) {
-      setNotes(JSON.parse(localStorage.getItem("crypticCrossWordNotes")));
-    } else {
-      const notesObject = {};
-      for (const clue in clues) {
-        notesObject[clue] = "";
-      }
-      setNotes(notesObject);
-    }
+    setLocalStorageInitialState(setNotes);
   }, [clues]);
-  // Add notes to local storage
-  // setInterval(() => {
-  //   localStorage.setItem("crypticCrossWordNotes", JSON.stringify(notes));
-  // }, 500);
+  // Update Local Storage with Notes
   useEffect(() => {
-    localStorage.setItem("crypticCrossWordNotes", JSON.stringify(notes));
+    updateLocalStorage(notes);
   }, [notes]);
 
+
   return (
-    <div className="appRendered" >
+    <div className="appRendered">
       <Clue clues={clues} currentActive={currentActive} />
       <Note notes={notes} setNotes={setNotes} currentActive={currentActive} />
     </div>
