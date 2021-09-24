@@ -12,10 +12,12 @@ export const setupClueState = () => {
 };
 
 export const setInitialClue = (setCurrentActive) => {
+  // Check for none
+  if (!document.querySelector('.crossword__clue--selected')) return;
   const clues = document.querySelectorAll(".crossword__clue");
   // Convert from nodelist to array to use filter
   const activeClue = Array.from(clues).filter(clue => clue.classList.contains('crossword__clue--selected'));
-  if (activeClue) setCurrentActive(activeClue[0].hash);
+  setCurrentActive(activeClue[0].hash);
 }
 
 const watchGuardianClues = (setCurrentActive) => {
