@@ -39,7 +39,7 @@ module.exports = {
             {
                 test: /\.html$/,
                 use: ['html-loader']
-            }
+            },
         ]
     },
     plugins: [
@@ -59,7 +59,6 @@ module.exports = {
                 { from: 'src/public/background.js', to: '[name].[ext]' },
                 { from: 'src/inject_script.js', to: '[name].[ext]' },
                 { from: 'src/public/*.png', to: '[name].[ext]' },
-                { from: 'src/public/*.css', to: '[name].[ext]' }
             ]
         }),
         new CleanWebpackPlugin()

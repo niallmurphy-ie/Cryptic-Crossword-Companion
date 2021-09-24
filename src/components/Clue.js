@@ -2,15 +2,18 @@ import React, { Fragment } from "react";
 import styles from '../styles';
 
 const Clue = ({ clues, currentActive }) => {
+
   if (!clues || !currentActive) return <div></div>;
+
   const clueShown = clues[currentActive];
+
   return (
-    <div key={clueShown.clueText} styles={styles.clueHelperSection} className="clueHelperBox">
-      <h4 className="clueHelperTitle">{clueShown.clueText}</h4>
-      <div className="clueHelperAbbreviations">
-        {clueShown.abbreviations && clueShown.abbreviations.length > 0 ? (
+    <div key={clueShown.clueText}>
+      <h4>{clueShown.clueText}</h4>
+      <div style={styles.clueHelperSection}>
+        {clueShown.abbreviations ? (
           <ClueHelpSection
-			 	key={JSON.stringify(clueShown.abbreviations)}
+            key={JSON.stringify(clueShown.abbreviations)}
             clueHelpType="Abbreviations"
             clueHelp={clueShown.abbreviations}
           />
@@ -18,10 +21,10 @@ const Clue = ({ clues, currentActive }) => {
           ""
         )}
       </div>
-      <div>
+      <div style={styles.clueHelperSection}>
         {clueShown.indicators ? (
           <ClueHelpSection
-			 	key={JSON.stringify(clueShown.indicators)}
+            key={JSON.stringify(clueShown.indicators)}
             clueHelpType="Indicators"
             clueHelp={clueShown.indicators}
           />
@@ -35,7 +38,7 @@ const Clue = ({ clues, currentActive }) => {
 
 const ClueHelpSection = ({ clueHelp, clueHelpType }) => {
   return (
-    <div className="clueHelperSection">
+    <div>
       <div>
         <b>{clueHelpType}</b>
       </div>
@@ -54,7 +57,7 @@ const ClueHelpLine = ({ help }) => {
   let text = "";
   for (let row in help) {
     text = (
-      <Fragment className="clueHelperLine">
+      <Fragment key={"fragment_" + help[row].join('')}>
         <strong>{row}: </strong> {help[row].join(", ")}
       </Fragment>
     );
