@@ -1,4 +1,5 @@
 import addClueData from "./addClueData";
+import css from '../styles/theguardian.css';
 
 export const setupClueState = () => {
   const clues = document.querySelectorAll(".crossword__clue");

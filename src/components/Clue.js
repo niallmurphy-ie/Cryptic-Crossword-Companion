@@ -58,7 +58,7 @@ const ClueHelpLine = ({ help }) => {
   for (let row in help) {
     text = (
       <Fragment key={"fragment_" + help[row].join('')}>
-        <strong>{row}: </strong> {help[row].join(", ")}
+        <div className="crossword__clue__text"><strong>{row}: </strong> {help[row].join(", ")}</div>
       </Fragment>
     );
   }
