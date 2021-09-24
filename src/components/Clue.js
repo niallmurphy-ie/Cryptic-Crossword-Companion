@@ -48,4 +48,5 @@ const ClueHelpLine = ({ help }) => {
   }
   return text;
 };
+
 export default Clue;
