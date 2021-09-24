@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import styles from "../styles"
 
 const Note = ({ notes, setNotes, currentActive }) => {
   if (!notes || !currentActive) return <div></div>;
@@ -18,7 +17,7 @@ const Note = ({ notes, setNotes, currentActive }) => {
     setNotes(updateNote);
   };
   return (
-    <div style={styles.noteSection}>
+    <div className="noteSection">
       <div>Notes</div>
       <textarea
         type="text"

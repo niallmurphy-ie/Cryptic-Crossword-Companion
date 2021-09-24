@@ -12,6 +12,9 @@ function App() {
   const [clues, setClues] = useState(null);
   const [currentActive, setCurrentActive] = useState(null);
   const [notes, setNotes] = useState(null);
+  /**
+   * Clues
+   */
   // Setup Initial Clue State
   useEffect(() => {
     setClues(setupClueState);
@@ -22,11 +25,14 @@ function App() {
   }, []);
   // Watch and set current active clue
   watchGuardianClues(setCurrentActive);
+  /**
+   * Notes
+   */
   // Set Notes State
   useEffect(() => {
     setLocalStorageInitialState(setNotes, clues);
   }, [clues]);
-  // Update  Notes state
+  // Update Notes state
   useEffect(() => {
     updateLocalStorage(notes)
   }, [notes]);

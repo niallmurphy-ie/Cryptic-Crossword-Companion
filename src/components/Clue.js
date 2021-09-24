@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import styles from '../styles';
 
 const Clue = ({ clues, currentActive }) => {
 
@@ -10,7 +9,7 @@ const Clue = ({ clues, currentActive }) => {
   return (
     <div key={clueShown.clueText}>
       <h4>{clueShown.clueText}</h4>
-      <div style={styles.clueHelperSection}>
+      <div>
         {clueShown.abbreviations ? (
           <ClueHelpSection
             key={JSON.stringify(clueShown.abbreviations)}
@@ -21,7 +20,7 @@ const Clue = ({ clues, currentActive }) => {
           ""
         )}
       </div>
-      <div style={styles.clueHelperSection}>
+      <div>
         {clueShown.indicators ? (
           <ClueHelpSection
             key={JSON.stringify(clueShown.indicators)}
@@ -38,7 +37,7 @@ const Clue = ({ clues, currentActive }) => {
 
 const ClueHelpSection = ({ clueHelp, clueHelpType }) => {
   return (
-    <div>
+    <div className="clueHelperSection">
       <div>
         <b>{clueHelpType}</b>
       </div>

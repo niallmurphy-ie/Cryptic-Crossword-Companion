@@ -1,5 +1,17 @@
 div {
-	font-size: 15px;
-	font-family: "Guardian Text Sans Web","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-s
+  font-size: 15px;
+  font-family: "Guardian Text Sans Web", "Helvetica Neue", Helvetica, Arial,
+    "Lucida Grande", sans-s;
 }
 
+.clueHelperSection {
+  padding-top: 15px;
+}
+.noteSection {
+  padding-top: 15px;
+}
+.noteSection textarea {
+	width: 90%;
+	min-height: 80px;
+	padding: 10px;
+}
