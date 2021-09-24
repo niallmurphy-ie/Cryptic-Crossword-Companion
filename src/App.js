@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import watchGuardianClues, { setupClueState } from "./utils/theGuardian";
+import watchGuardianClues, { setupClueState, setInitialClue } from "./utils/theGuardian";
 import Clue from "./components/Clue";
 import Note from "./components/Note";
 
@@ -12,6 +12,10 @@ function App() {
   useEffect(() => {
     setClues(setupClueState);
   }, []);
+  // Set initial clue on page load
+  useEffect(() => {
+    setInitialClue(setCurrentActive);
+  }, [])
   // Watch and set current active clue
   watchGuardianClues(setCurrentActive);
   // Set Notes State
@@ -32,7 +36,7 @@ function App() {
   // Add notes to local storage
   setInterval(() => {
     localStorage.setItem("crypticCrossWordNotes", JSON.stringify(notes));
-  }, 2000);
+  }, 500);
 
   return (
     <div className="appRendered" style={styles.main}>
