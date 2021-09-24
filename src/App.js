@@ -32,7 +32,7 @@ function App() {
   // Add notes to local storage
   setInterval(() => {
     localStorage.setItem("crypticCrossWordNotes", JSON.stringify(notes));
-  }, 3000);
+  }, 2000);
 
   return (
     <div className="appRendered" style={styles.main}>

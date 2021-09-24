@@ -9,7 +9,6 @@ const addClueData = (clue) => {
 
 const returnAbbreviations = (clue) => {
   var abbArray = [];
-  const clueText = clue;
   // Loop abbreviations
   for (var abbreviation in abbreviations) {
     // First check for included anywhere
@@ -28,7 +27,7 @@ const returnAbbreviations = (clue) => {
       }
     }
   }
-  return abbArray.join(", ");
+  return abbArray;
 };
 
 function countWords(str) {
