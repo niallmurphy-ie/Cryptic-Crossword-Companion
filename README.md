@@ -1,7 +1,7 @@
 A Cryptic Crossword Helper for the Guardian's website.
 
 To build the extension from the source files:\
-git clone https://github.com/niallmurphy-ie/Cryptic-Crossword-Helper.git\
+git clone https://github.com/niallmurphy-ie/Cryptic-Crossword-Helper.git \
 cd Cryptic-Crossword-Helper\
 npm install\
 npm run build:prod\
