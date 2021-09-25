@@ -1,9 +1,9 @@
 import React, { Fragment } from "react";
+import getSynonyms from '../utils/getSynonyms';
 
 const Clue = ({ clues, currentActive }) => {
 
   if (!clues || !currentActive) return <div></div>;
-
   const clueShown = clues[currentActive];
   // Popup Search
   if (!clueShown || clueShown.clueText === "") return <div></div>;
@@ -11,6 +11,7 @@ const Clue = ({ clues, currentActive }) => {
   return (
     <div key={clueShown.clueText}>
       <h4>{clueShown.clueText}</h4>
+      <button onClick={() => getSynonyms(clueShown.clueText)}>Get synonyms</button>
       <div>
         {clueShown.abbreviations ? (
           <ClueHelpSection
