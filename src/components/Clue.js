@@ -56,19 +56,23 @@ const Clue = ({ clues, currentActive, setClues }) => {
 
 const DisplaySynonyms = ({ clueShown }) => {
     if (!clueShown.synonyms) return <div></div>;
-    console.log(clueShown.synonyms);
+    console.log('DisplayDynonyms', clueShown.synonyms);
     return (
         <div>
-            {clueShown.synonyms.map((syn) => (
-                <Synonyms synonyms={syn} />
-            ))}
+            {clueShown['synonyms'].map((syn) => {
+                return <div>SYNONYMS</div>;
+            })}
+
         </div>
     );
 };
 
 const Synonyms = ({ synonyms }) => {
-    console.log(synonyms);
-    return <div></div>;
+    // console.log(synonyms);
+    // for (let word in synonyms) {
+    //   return <div>{word}: {synonyms.join(', ')}</div>;
+    // }
+    return <div>Hello</div>;
 };
 
 const ClueHelpSection = ({ clueHelp, clueHelpType }) => {
