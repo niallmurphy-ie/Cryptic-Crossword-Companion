@@ -6,7 +6,10 @@ import watchGuardianClues, {
 } from "./utils/theGuardian";
 import Clue from "./components/Clue";
 import Note from "./components/Note";
-import { setLocalStorageInitialState, updateLocalStorage } from "./utils/localStorage";
+import {
+  setLocalStorageInitialState,
+  updateLocalStorage,
+} from "./utils/localStorage";
 
 function App() {
   const [clues, setClues] = useState(null);
@@ -34,11 +37,11 @@ function App() {
   }, [clues]);
   // Update Notes state
   useEffect(() => {
-    updateLocalStorage(notes)
+    updateLocalStorage(notes);
   }, [notes]);
 
   return (
-    <div className="appRendered" >
+    <div className="appRendered">
       <Clue clues={clues} currentActive={currentActive} />
       <Note notes={notes} setNotes={setNotes} currentActive={currentActive} />
     </div>
@@ -46,3 +49,4 @@ function App() {
 }
 
 export default App;
+

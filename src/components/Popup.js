@@ -1,20 +1,25 @@
-import React from 'react';
-import HorizontalCarousel from './HorizontalCarousel.js';
+import React, { useState } from "react";
+import Clue from "./Clue";
 
 function Popup() {
-    return (
-        <div style={styles.main}>
-            <h1>Chrome Ext - Popup</h1>
-            <HorizontalCarousel />
-        </div>
-    )
-}
+  const [input, setInput] = useState("");
+  const [fakedClues, setFakedClues] = useState(null);
+  const fakedCurrentActive = "popUpSearch";
 
-const styles = {
-    main: {
-        width: '300px',
-        height: '600px'
-    }
+  const handleChange = (event) => {
+    setInput(event.target.value);
+  };
+
+  // Create fake object to use Clue component
+  useEffect(() => {}, [input]);
+
+  return (
+    <div>
+      <div>Type a clue:</div>
+      <input value={input} onChange={handleChange}></input>
+      <Clue clues={fakedClues} currentActive={fakedCurrentActive} />
+    </div>
+  );
 }
 
 export default Popup;
