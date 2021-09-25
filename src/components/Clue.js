@@ -46,23 +46,24 @@ const Clue = ({ clues, currentActive, setClues }) => {
                     Get synonyms
                 </button>
                 <DisplaySynonyms
-                    key={'synonyms_' + currentActive}
-                    clueShown={clueShown}
+                    key={'synonyms_' + currentActive.synonyms}
+                    clues={clues}
+                    currentActive={currentActive}
                 />
             </div>
         </div>
     );
 };
 
-const DisplaySynonyms = ({ clueShown }) => {
-    if (!clueShown.synonyms) return <div></div>;
+const DisplaySynonyms = ({ clues, currentActive }) => {
+    const clueShown = clues[currentActive];
+    if (!clueShown.synonyms) return <div>No Synonyms</div>;
     console.log('DisplayDynonyms', clueShown.synonyms);
     return (
         <div>
             {clueShown['synonyms'].map((syn) => {
                 return <div>SYNONYMS</div>;
             })}
-
         </div>
     );
 };
