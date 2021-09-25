@@ -42,7 +42,7 @@ function App() {
 
   return (
     <div className="appRendered">
-      <Clue clues={clues} currentActive={currentActive} />
+      <Clue clues={clues} currentActive={currentActive} setClues={setClues} />
       <Note notes={notes} setNotes={setNotes} currentActive={currentActive} />
     </div>
   );

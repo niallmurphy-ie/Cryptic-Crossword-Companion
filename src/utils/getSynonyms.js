@@ -2,24 +2,31 @@ import axios from 'axios';
 import ignorewords from '../data/ignorewords';
 import { clueLength } from './parseClues/helperFunctions';
 
-const getSynonyms = async (clue) => {
+const getSynonyms = async (clue, clues, setClues, currentActive) => {
     const words = filterWords(clue);
-	 console.log(words);
+    console.log(words);
     const synonyms = {};
     const requests = [];
     requests.push(
         words.forEach(async (word) => {
-            synonyms[word] = filterReturnedSynonyms(await synonymsAPI(word), clue);
+            synonyms[word] = filterReturnedSynonyms(
+                await synonymsAPI(word),
+                clue
+            );
         })
     );
     Promise.all(requests).then(console.log(synonyms));
 };
 
 const filterReturnedSynonyms = (synonyms, clue) => {
-	if (!synonyms) return;
-	const cLength = clueLength(clue);
-	console.log(`Clue Length: ${cLength}`)
-	return synonyms.filter(synonym => synonym.length < cLength + 1);
+    if (!synonyms) return;
+
+    const cLength = clueLength(clue);
+    return synonyms.filter((synonym) => {
+        if (synonym.split(' ').length > 1) return false;
+        if (synonym.length > cLength) return false;
+        return true;
+    });
 };
 
 const synonymsAPI = async (word) => {
@@ -32,9 +39,14 @@ const synonymsAPI = async (word) => {
     let synonyms = [];
     if (!response) return;
     response.data[0].meanings.forEach((meaning) => {
-        meaning.definitions.forEach((definition) => {
-            synonyms = [...synonyms, definition.synonyms];
-        });
+        if (
+            meaning['partOfSpeech'] == 'noun' ||
+            meaning['partOfSpeech'] == 'adjective'
+        ) {
+            meaning.definitions.forEach((definition) => {
+                synonyms = [...synonyms, definition.synonyms];
+            });
+        }
     });
     const merged = [].concat.apply([], synonyms);
     return merged;
