@@ -33,12 +33,42 @@ const Clue = ({ clues, currentActive, setClues }) => {
                 )}
             </div>
             <div className="clueHelperSection">
-                <button onClick={() => getSynonyms(clueShown.clueText, clues, setClues, currentActive)}>
+                <button
+                    onClick={() =>
+                        getSynonyms(
+                            clueShown.clueText,
+                            clues,
+                            setClues,
+                            currentActive
+                        )
+                    }
+                >
                     Get synonyms
                 </button>
+                <DisplaySynonyms
+                    key={'synonyms_' + currentActive}
+                    clueShown={clueShown}
+                />
             </div>
         </div>
     );
+};
+
+const DisplaySynonyms = ({ clueShown }) => {
+    if (!clueShown.synonyms) return <div></div>;
+    console.log(clueShown.synonyms);
+    return (
+        <div>
+            {clueShown.synonyms.map((syn) => (
+                <Synonyms synonyms={syn} />
+            ))}
+        </div>
+    );
+};
+
+const Synonyms = ({ synonyms }) => {
+    console.log(synonyms);
+    return <div></div>;
 };
 
 const ClueHelpSection = ({ clueHelp, clueHelpType }) => {

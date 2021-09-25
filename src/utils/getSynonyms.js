@@ -4,18 +4,26 @@ import { clueLength } from './parseClues/helperFunctions';
 
 const getSynonyms = async (clue, clues, setClues, currentActive) => {
     const words = filterWords(clue);
-    console.log(words);
     const synonyms = {};
     const requests = [];
     requests.push(
         words.forEach(async (word) => {
-            synonyms[word] = filterReturnedSynonyms(
-                await synonymsAPI(word),
-                clue
-            );
+            // TODO change [word] to word from API because of plurals
+				const syns = await synonymsAPI(word);
+				if (syns.length > 0) {
+					const filtered = synonyms[word] = filterReturnedSynonyms(syns, clue);
+					if (filtered.length > 0) {
+						synonyms[word] = filtered;
+					}
+				}
         })
     );
-    Promise.all(requests).then(console.log(synonyms));
+    Promise.all(requests).then((req) => {
+        // Set new clue state
+        const newClues = { ...clues };
+        newClues[currentActive].synonyms = synonyms;
+        setClues(newClues);
+    });
 };
 
 const filterReturnedSynonyms = (synonyms, clue) => {
