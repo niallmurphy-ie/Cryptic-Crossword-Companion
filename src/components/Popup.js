@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Clue from './Clue';
+import addClueData from '../utils/addClueData';
 
 function Popup() {
     const [input, setInput] = useState('');
@@ -12,13 +13,13 @@ function Popup() {
 
     // Create fake object to use Clue component
     useEffect(() => {
-        setFakedClues([{ popUpSearch: input }]);
+        setFakedClues({popUpSearch: addClueData(input)});
     }, [input]);
 
     return (
         <div>
             <div>Type a clue:</div>
-            <input value={input} onChange={handleChange}></input>
+            <textarea value={input} onChange={handleChange}></textarea>
             <Clue clues={fakedClues} currentActive="popUpSearch" />
         </div>
     );

@@ -5,6 +5,8 @@ const Clue = ({ clues, currentActive }) => {
   if (!clues || !currentActive) return <div></div>;
 
   const clueShown = clues[currentActive];
+  // Popup Search
+  if (!clueShown || clueShown.clueText === "") return <div></div>;
 
   return (
     <div key={clueShown.clueText}>
