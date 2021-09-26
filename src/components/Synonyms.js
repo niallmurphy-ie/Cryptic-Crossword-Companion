@@ -1,22 +1,26 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import getSynonyms from '../utils/getSynonyms';
 
-const DisplaySynonyms = ({ clue }) => {
-    const [synonyms, setSynonyms] = useState(synonyms || null);
+const DisplaySynonyms = ({ clues, currentActive, appSynonyms, setAppSynonyms }) => {
+	console.log(clues, currentActive, appSynonyms, setAppSynonyms);3
+	if (!currentActive || !clues) return <div></div>;
+    // Set state from parent
+    const synonyms = appSynonyms[currentActive] || null;
 
-    const handleClick = (clue) => {
-        getSynonyms(clue, setSynonyms);
+    const handleClick = (currentActive) => {
+        getSynonyms(clues[currentActive].clueText, currentActive, appSynonyms, setAppSynonyms);
     };
-    console.log(synonyms);
+    console.log('New synonyms', synonyms);
+
     return (
         <div className="Synonyms">
-            {!synonyms ? (
-                <button onClick={() => handleClick(clue)}>Get synonyms</button>
+            {!appSynonyms[currentActive] ? (
+                <button onClick={() => handleClick(currentActive)}>Get synonyms</button>
             ) : (
                 ''
             )}
-            {synonyms ? (
-                <Synonyms key={`synonyms_for_${clue}`} synonyms={synonyms} />
+            {appSynonyms[currentActive] ? (
+                <Synonyms key={`synonyms_for_${currentActive}`} synonyms={synonyms} />
             ) : (
                 ''
             )}
