@@ -6,8 +6,7 @@ import generalDeletionWords from '../../data/generalDeletionWords';
 import hiddenWords from '../../data/hiddenWords';
 import spoonerWords from '../../data/spoonerWords';
 import letterSwapWords from '../../data/letterSwapWords';
-import reverseLeftWords from '../../data/reverseLeftWords';
-import reverseUpwardsWords from '../../data/reverseUpwardsWords';
+import reverseWords from '../../data/reverseLeftWords';
 import palindromeWords from '../../data/palindromeWords';
 import linkingWords from '../../data/linkingWords';
 import letterSelectionWords from '../../data/letterSelectionWords';
@@ -30,8 +29,7 @@ function returnIndicators(clueText) {
         ['Hidden Words', hiddenWords],
         ['Spooner', spoonerWords],
         ['Letter Swap / Movement', letterSwapWords],
-        ['Reverse Left', reverseLeftWords],
-        ['Reverse Upwards', reverseUpwardsWords],
+        ['Reversal', reverseWords],
         ['Palindrome', palindromeWords],
         ['Linking Words', linkingWords],
         ['Letter Selection', letterSelectionWords],
