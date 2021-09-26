@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import getSynonyms from '../utils/getSynonyms';
+import DisplaySynonyms from './Synonyms';
 
 const Clue = ({ clues, currentActive, setClues }) => {
     if (!clues || !currentActive) return <div></div>;
@@ -33,54 +33,12 @@ const Clue = ({ clues, currentActive, setClues }) => {
                 )}
             </div>
             <div className="clueHelperSection">
-                <button
-                    onClick={() =>
-                        getSynonyms(
-                            clueShown.clueText,
-                            clues,
-                            setClues,
-                            currentActive
-                        )
-                    }
-                >
-                    Get synonyms
-                </button>
                 <DisplaySynonyms
                     key={'synonyms_' + clueShown.clueText}
-                    clues={clues}
-                    currentActive={currentActive}
+                    clue={clueShown.clueText}
                 />
             </div>
         </div>
-    );
-};
-
-const DisplaySynonyms = ({ clues, currentActive }) => {
-    console.log(clues, currentActive);
-    const clueShown = clues[currentActive];
-    console.log('Synonyms', clueShown['synonyms']);
-    if (!clueShown.synonyms) return <div>No Synonyms</div>;
-    console.log('DisplayDynonyms', clueShown.synonyms);
-
-    const synonymLines = [];
-    for (const syn in clueShown.synonyms) {
-        console.log('Synonym', syn);
-        console.log(clueShown.synonyms[syn]);
-        // synonymLines.push(
-        //     <Synonyms synonymWord={syn} synonyms={clueShown.synonyms[syn]} />
-        // );
-    }
-    console.log('SynonymLines', synonymLines);
-    return <div>{synonymLines}</div>;
-};
-
-const Synonyms = ({ synonymWord, synonyms }) => {
-    return (
-        <Fragment key={'synonym_' + synonymWord}>
-            <div className="crossword__clue__text">
-                <strong>{synonymWord}: </strong> {synonyms.join(', ')}
-            </div>
-        </Fragment>
     );
 };
 

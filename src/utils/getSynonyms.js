@@ -2,28 +2,32 @@ import axios from 'axios';
 import ignorewords from '../data/ignorewords';
 import { clueLength } from './parseClues/helperFunctions';
 
-const getSynonyms = async (clue, clues, setClues, currentActive) => {
+const getSynonyms = async (clue, setSynonyms) => {
     const words = filterWords(clue);
     const synonyms = {};
     const requests = [];
     requests.push(
         words.forEach(async (word) => {
-            // TODO change [word] to word from API because of plurals
-				const syns = await synonymsAPI(word);
-				if (syns.length > 0) {
-					const filtered = filterReturnedSynonyms(syns, clue);
-					if (filtered.length > 0) {
-						synonyms[word] = filtered;
-					}
-				}
+            const syns = await synonymsAPI(word);
+            if (syns.length > 0) {
+                const filtered = filterReturnedSynonyms(syns, clue);
+                if (filtered.length > 0) {
+                    synonyms[word] = filtered;
+                }
+            }
         })
     );
-    axios.all(requests).then((req) => {
-        // Set new clue state
-        const newClues = { ...clues };
-        newClues[currentActive].synonyms = synonyms;
-        setClues(newClues);
-    });
+    axios
+        .all(requests)
+        .then(
+            axios.spread((...responses) => {
+                console.log(responses);
+                setSynonyms(synonyms);
+            })
+        )
+        .catch(() => {
+            console.log('There has been an error getting synonyms.');
+        });
 };
 
 const filterReturnedSynonyms = (synonyms, clue) => {
