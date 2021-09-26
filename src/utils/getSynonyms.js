@@ -4,7 +4,7 @@ import { clueLength } from './parseClues/helperFunctions';
 
 const getSynonyms = async (clue, clues, setClues, currentActive) => {
     const words = filterWords(clue);
-    const synonyms = [];
+    const synonyms = {};
     const requests = [];
     requests.push(
         words.forEach(async (word) => {
@@ -13,12 +13,12 @@ const getSynonyms = async (clue, clues, setClues, currentActive) => {
 				if (syns.length > 0) {
 					const filtered = filterReturnedSynonyms(syns, clue);
 					if (filtered.length > 0) {
-						synonyms.push( {[word]: filtered });
+						synonyms[word] = filtered;
 					}
 				}
         })
     );
-    Promise.all(requests).then((req) => {
+    axios.all(requests).then((req) => {
         // Set new clue state
         const newClues = { ...clues };
         newClues[currentActive].synonyms = synonyms;

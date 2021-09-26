@@ -46,7 +46,7 @@ const Clue = ({ clues, currentActive, setClues }) => {
                     Get synonyms
                 </button>
                 <DisplaySynonyms
-                    key={'synonyms_' + currentActive.synonyms}
+                    key={'synonyms_' + clueShown.clueText}
                     clues={clues}
                     currentActive={currentActive}
                 />
@@ -56,24 +56,32 @@ const Clue = ({ clues, currentActive, setClues }) => {
 };
 
 const DisplaySynonyms = ({ clues, currentActive }) => {
+    console.log(clues, currentActive);
     const clueShown = clues[currentActive];
+    console.log('Synonyms', clueShown['synonyms']);
     if (!clueShown.synonyms) return <div>No Synonyms</div>;
     console.log('DisplayDynonyms', clueShown.synonyms);
-    return (
-        <div>
-            {clueShown['synonyms'].map((syn) => {
-                return <div>SYNONYMS</div>;
-            })}
-        </div>
-    );
+
+    const synonymLines = [];
+    for (const syn in clueShown.synonyms) {
+        console.log('Synonym', syn);
+        console.log(clueShown.synonyms[syn]);
+        // synonymLines.push(
+        //     <Synonyms synonymWord={syn} synonyms={clueShown.synonyms[syn]} />
+        // );
+    }
+    console.log('SynonymLines', synonymLines);
+    return <div>{synonymLines}</div>;
 };
 
-const Synonyms = ({ synonyms }) => {
-    // console.log(synonyms);
-    // for (let word in synonyms) {
-    //   return <div>{word}: {synonyms.join(', ')}</div>;
-    // }
-    return <div>Hello</div>;
+const Synonyms = ({ synonymWord, synonyms }) => {
+    return (
+        <Fragment key={'synonym_' + synonymWord}>
+            <div className="crossword__clue__text">
+                <strong>{synonymWord}: </strong> {synonyms.join(', ')}
+            </div>
+        </Fragment>
+    );
 };
 
 const ClueHelpSection = ({ clueHelp, clueHelpType }) => {
