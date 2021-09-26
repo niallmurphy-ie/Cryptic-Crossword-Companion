@@ -2,7 +2,7 @@ import axios from 'axios';
 import ignorewords from '../data/ignorewords';
 import { clueLength } from './parseClues/helperFunctions';
 
-const getSynonyms = async (clue, setSynonyms) => {
+const getSynonyms = async (clue, currentActive, appSynonyms, setAppSynonyms) => {
     const words = filterWords(clue);
     const synonyms = {};
     const requests = [];
@@ -16,7 +16,6 @@ const getSynonyms = async (clue, setSynonyms) => {
         .then(
             axios.spread((...responses) => {
                 responses.map((response) => {
-                    console.log(response);
                     const syns = synonymsParse(response);
                     if (syns.length > 0) {
                         const filtered = filterReturnedSynonyms(syns, clue);
@@ -25,7 +24,11 @@ const getSynonyms = async (clue, setSynonyms) => {
                         }
                     }
                 });
-                setSynonyms(synonyms);
+                let updatedSynonyms = appSynonyms;
+                updatedSynonyms[currentActive] = synonyms;
+                console.log(updatedSynonyms);
+                setAppSynonyms(updatedSynonyms);
+                console.log(appSynonyms);
             })
         )
         .catch(() => {
@@ -47,7 +50,6 @@ const synonymsParse = (response) => {
 		 }
 	});
 	const merged = [].concat.apply([], synonyms);
-	console.log(merged)
 	return merged;
 };
 
