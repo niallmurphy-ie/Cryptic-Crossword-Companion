@@ -1,6 +1,5 @@
 import { countWords } from './helperFunctions';
 // JSON
-import indicators from '../../data/indicators';
 import insertionWords from '../../data/insertionWords';
 import containmentWords from '../../data/containmentWords';
 import generalDeletionWords from '../../data/generalDeletionWords';
@@ -9,6 +8,13 @@ import spoonerWords from '../../data/spoonerWords';
 import letterSwapWords from '../../data/letterSwapWords';
 import reverseLeftWords from '../../data/reverseLeftWords';
 import reverseUpwardsWords from '../../data/reverseUpwardsWords';
+import palindromeWords from '../../data/palindromeWords';
+import linkingWords from '../../data/linkingWords';
+import letterSelectionWords from '../../data/letterSelectionWords';
+import letterDeletionWords from '../../data/letterDeletionWords';
+import juxtapositionWords from '../../data/juxtapositionWords';
+import homophoneWords from '../../data/homophoneWords';
+import anagramWords from '../../data/anagramWords';
 
 // Check indicators
 function returnIndicators(clueText) {
@@ -16,48 +22,29 @@ function returnIndicators(clueText) {
     /**
      * Go through Indicators
      *  */
-    // Insertions
-    const returnedInsertions = parseIndicators(
-        'Insertions',
-        clueText,
-        insertionWords.words
-    );
-    if (returnedInsertions) returnArray.push(returnedInsertions);
-    // Containment
-    const containment = parseIndicators(
-        'Containment',
-        clueText,
-        containmentWords.words
-    );
-    if (containment) returnArray.push(containment);
-    // General Deletion
-    const deletion = parseIndicators(
-        'General Deletion',
-        clueText,
-        generalDeletionWords.words
-    );
-    if (deletion) returnArray.push(deletion);
-    // Hidden words
-    const hidden = parseIndicators('Hidden Words', clueText, hiddenWords.words);
-    if (hidden) returnArray.push(hidden);
-    // Spooner
-    const spooner = parseIndicators('Spooner', clueText, spoonerWords.words);
-    if (spooner) returnArray.push(spooner);
-    // Letter Swap
-    const swap = parseIndicators(
-        'Letter Swap / Movement',
-        clueText,
-        letterSwapWords.words
-    );
-    if (swap) returnArray.push(swap);
-    // Reverse Left
-    const left = parseIndicators(
-        'Reverse left',
-        clueText,
-        reverseLeftWords.words
-    );
-    if (left) returnArray.push(left);
-
+    const clueTypes = [
+        ['Anagrams', anagramWords],
+        ['Insertions', insertionWords],
+        ['Containment', containmentWords],
+        ['General Deletion', generalDeletionWords],
+        ['Hidden Words', hiddenWords],
+        ['Spooner', spoonerWords],
+        ['Letter Swap / Movement', letterSwapWords],
+        ['Reverse Left', reverseLeftWords],
+        ['Reverse Upwards', reverseUpwardsWords],
+        ['Palindrome', palindromeWords],
+        ['Linking Words', linkingWords],
+        ['Letter Selection', letterSelectionWords],
+        ['Letter Deletion', letterDeletionWords],
+        ['Juxtaposition', juxtapositionWords],
+        ['Homophones', homophoneWords],
+    ];
+    // Get words from each type
+    clueTypes.forEach((clueType) => {
+		 console.log(clueType)
+        const result = parseIndicators(clueType[0], clueText, clueType[1].words);
+        if (result) returnArray.push(result);
+    });
     return returnArray;
 }
 
