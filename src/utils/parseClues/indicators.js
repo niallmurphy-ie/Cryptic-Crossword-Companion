@@ -41,7 +41,6 @@ function returnIndicators(clueText) {
     ];
     // Get words from each type
     clueTypes.forEach((clueType) => {
-		 console.log(clueType)
         const result = parseIndicators(clueType[0], clueText, clueType[1].words);
         if (result) returnArray.push(result);
     });
@@ -66,8 +65,7 @@ const parseIndicators = (type, clueText, words) => {
         }
     }
     if (endArray.length > 0) {
-        const clueTypeTitle = type;
-        return { [clueTypeTitle]: endArray };
+        return { [type]: endArray };
     }
     return null;
 };
