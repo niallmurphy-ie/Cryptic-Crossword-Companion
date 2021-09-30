@@ -6,11 +6,10 @@ import generalDeletionWords from '../../data/generalDeletionWords';
 import hiddenWords from '../../data/hiddenWords';
 import spoonerWords from '../../data/spoonerWords';
 import letterSwapWords from '../../data/letterSwapWords';
-import reverseWords from '../../data/reverseLeftWords';
+import reverseWords from '../../data/reversalWords';
 import palindromeWords from '../../data/palindromeWords';
 import linkingWords from '../../data/linkingWords';
 import letterSelectionWords from '../../data/letterSelectionWords';
-import letterDeletionWords from '../../data/letterDeletionWords';
 import juxtapositionWords from '../../data/juxtapositionWords';
 import homophoneWords from '../../data/homophoneWords';
 import anagramWords from '../../data/anagramWords';
@@ -33,13 +32,16 @@ function returnIndicators(clueText) {
         ['Palindrome', palindromeWords],
         ['Linking Words', linkingWords],
         ['Letter Selection', letterSelectionWords],
-        ['Letter Deletion', letterDeletionWords],
         ['Juxtaposition', juxtapositionWords],
         ['Homophones', homophoneWords],
     ];
     // Get words from each type
     clueTypes.forEach((clueType) => {
-        const result = parseIndicators(clueType[0], clueText, clueType[1].words);
+        const result = parseIndicators(
+            clueType[0],
+            clueText,
+            clueType[1].words
+        );
         if (result) returnArray.push(result);
     });
     return returnArray;
