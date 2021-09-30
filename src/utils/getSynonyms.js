@@ -31,7 +31,7 @@ const getSynonyms = async (
                 });
                 let updatedSynonyms = { ...appSynonyms };
                 updatedSynonyms[currentActive] = {
-                    synonymLength: 0,
+                    synonymLength: 1,
                     synonymData: synonyms,
                 };
                 // Set App State
