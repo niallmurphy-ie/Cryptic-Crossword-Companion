@@ -2,7 +2,12 @@ import axios from 'axios';
 import ignorewords from '../data/ignorewords';
 import { clueLength } from './parseClues/helperFunctions';
 
-const getSynonyms = async (clue, currentActive, appSynonyms, setAppSynonyms) => {
+const getSynonyms = async (
+    clue,
+    currentActive,
+    appSynonyms,
+    setAppSynonyms
+) => {
     const words = filterWords(clue);
     const synonyms = {};
     const requests = [];
@@ -24,11 +29,13 @@ const getSynonyms = async (clue, currentActive, appSynonyms, setAppSynonyms) => 
                         }
                     }
                 });
-                let updatedSynonyms = appSynonyms;
-                updatedSynonyms[currentActive] = synonyms;
-                console.log(updatedSynonyms);
+                let updatedSynonyms = { ...appSynonyms };
+                updatedSynonyms[currentActive] = {
+                    synonymLength: 0,
+                    synonymData: synonyms,
+                };
+                // Set App State
                 setAppSynonyms(updatedSynonyms);
-                console.log(appSynonyms);
             })
         )
         .catch(() => {
@@ -37,26 +44,29 @@ const getSynonyms = async (clue, currentActive, appSynonyms, setAppSynonyms) => 
 };
 
 const synonymsParse = (response) => {
-	let synonyms = [];
-	if (!response) return;
-	response.data[0].meanings.forEach((meaning) => {
-		 if (
-			  meaning['partOfSpeech'] == 'noun' ||
-			  meaning['partOfSpeech'] == 'adjective'
-		 ) {
-			  meaning.definitions.forEach((definition) => {
-					synonyms = [...synonyms, definition.synonyms];
-			  });
-		 }
-	});
-	const merged = [].concat.apply([], synonyms);
-	return merged;
+    let synonyms = [];
+    if (!response) return;
+    response.data[0].meanings.forEach((meaning) => {
+        if (
+            meaning['partOfSpeech'] === 'noun' ||
+            meaning['partOfSpeech'] === 'adjective'
+        ) {
+            meaning.definitions.forEach((definition) => {
+                synonyms = [...synonyms, definition.synonyms];
+            });
+        }
+    });
+    const merged = [].concat.apply([], synonyms);
+    return merged;
 };
 
 const filterReturnedSynonyms = (synonyms, clue) => {
     if (!synonyms) return;
 
     const cLength = clueLength(clue);
+    // Order by length
+    synonyms = synonyms.sort();
+    // Filter length
     return synonyms.filter((synonym) => {
         if (synonym.split(' ').length > 1) return false;
         if (synonym.length > cLength) return false;

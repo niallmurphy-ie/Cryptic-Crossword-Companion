@@ -1,5 +1,5 @@
 // Make async await work
-import '@babel/polyfill'
+import '@babel/polyfill/noConflict'
 import React from "react";
 import ReactDOM from "react-dom";
 

@@ -2,10 +2,10 @@ import React, { Fragment, useState, useEffect } from 'react';
 import getSynonyms from '../utils/getSynonyms';
 
 const DisplaySynonyms = ({ clues, currentActive, appSynonyms, setAppSynonyms }) => {
-	console.log(clues, currentActive, appSynonyms, setAppSynonyms);3
+	console.log("DisplaySynonyms", clues, currentActive, appSynonyms, setAppSynonyms);
 	if (!currentActive || !clues) return <div></div>;
     // Set state from parent
-    const synonyms = appSynonyms[currentActive] || null;
+    const synonyms = appSynonyms[currentActive]|| null;
 
     const handleClick = (currentActive) => {
         getSynonyms(clues[currentActive].clueText, currentActive, appSynonyms, setAppSynonyms);
@@ -14,12 +14,12 @@ const DisplaySynonyms = ({ clues, currentActive, appSynonyms, setAppSynonyms }) 
 
     return (
         <div className="Synonyms">
-            {!appSynonyms[currentActive] ? (
+            {!synonyms ? (
                 <button onClick={() => handleClick(currentActive)}>Get synonyms</button>
             ) : (
                 ''
             )}
-            {appSynonyms[currentActive] ? (
+            {synonyms ? (
                 <Synonyms key={`synonyms_for_${currentActive}`} synonyms={synonyms} />
             ) : (
                 ''
@@ -30,14 +30,15 @@ const DisplaySynonyms = ({ clues, currentActive, appSynonyms, setAppSynonyms }) 
 
 const Synonyms = ({ synonyms }) => {
     const synsArray = [];
-    console.log(synonyms);
-    console.log('artist', synonyms['Artist']);
-
-    for (const s in synonyms) {
+    // const length = synonyms.length;
+    const length = 4;
+    for (const s in synonyms.synonymData) {
+        // Filter length
+        const synonymsArray = synonyms.synonymData[s].filter(syn => syn.length <= length);
         synsArray.push(
             <Fragment key={'synonym_' + synonyms[s]}>
                 <div className="crossword__clue__text">
-                    <strong>{s}: </strong> {synonyms[s].join(', ')}
+                    <strong>{s}: </strong> {synonymsArray.join(', ')}
                 </div>
             </Fragment>
         );

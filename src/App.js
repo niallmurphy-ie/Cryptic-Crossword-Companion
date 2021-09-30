@@ -1,5 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import currentWebsite from './utils/currentWebsite';
+
 import watchGuardianClues, {
     setupClueState,
     setInitialClue,
@@ -42,6 +44,11 @@ function App() {
         updateLocalStorage(notes);
     }, [notes]);
 
+    // Test
+    useEffect(() => {
+        console.log('Synonyms Updated');
+    }, [appSynonyms])
+
     // <Synonyms clues={clues} currentActive={currentActive} synonyms={synonyms} setSynonyms= />
     //
     return (
@@ -52,6 +59,7 @@ function App() {
                 setClues={setClues}
             />
             <DisplaySynonyms
+                key={"displaySynonyms_" + currentActive}
                 clues={clues}
                 currentActive={currentActive}
                 appSynonyms={appSynonyms}
