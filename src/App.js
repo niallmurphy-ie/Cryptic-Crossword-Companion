@@ -44,28 +44,23 @@ function App() {
         updateLocalStorage(notes);
     }, [notes]);
 
-    // Test
-    useEffect(() => {
-        console.log('Synonyms Updated');
-    }, [appSynonyms])
-
-    // <Synonyms clues={clues} currentActive={currentActive} synonyms={synonyms} setSynonyms= />
-    //
     return (
         <div className="appRendered">
             <Clue
+                key={'displayClue_' + currentActive}
                 clues={clues}
                 currentActive={currentActive}
                 setClues={setClues}
             />
             <DisplaySynonyms
-                key={"displaySynonyms_" + currentActive}
+                key={'displaySynonyms_' + currentActive}
                 clues={clues}
                 currentActive={currentActive}
                 appSynonyms={appSynonyms}
                 setAppSynonyms={setAppSynonyms}
             />
             <Note
+                key={'displayNote_' + currentActive}
                 notes={notes}
                 setNotes={setNotes}
                 currentActive={currentActive}

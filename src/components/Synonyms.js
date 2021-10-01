@@ -90,13 +90,19 @@ const Synonyms = ({ synonyms, handleLength }) => {
         );
         console.log(s);
     }
+    // Synonyms Length Text
+    let synonymsLengthText = '';
+    synonyms.synonymLength
+        ? (synonymsLengthText = `Characters: ${synonyms.synonymLength}`)
+        : (synonymsLengthText = '');
+
     return (
         <div>
             <div>
                 <b>Synonyms: </b>
                 <button onClick={() => handleLength('decrease')}> - </button>
-                {synonyms.synonymLength}
                 <button onClick={() => handleLength('increase')}> + </button>
+                {synonymsLengthText}
             </div>
             {synsArray.map((s) => (
                 <div>{s}</div>
