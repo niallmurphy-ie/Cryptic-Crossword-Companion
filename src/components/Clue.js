@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import DisplaySynonyms from './Synonyms';
+import DisplaySynonyms from './synonyms/DisplaySynonyms';
 import ClueHelpSection from './ClueHelpSection';
 
 const Clue = ({ clues, currentActive, setClues }) => {

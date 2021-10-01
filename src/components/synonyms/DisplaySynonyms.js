@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ShowSynonyms from './ShowSynonyms';
 import getSynonyms from '../../utils/synonyms/getSynonyms';
 
@@ -13,8 +13,12 @@ const DisplaySynonyms = ({
     // Set state from parent
     const synonyms = appSynonyms[currentActive] || null;
 
+    // Button state for +1 Synonyms
+    const [buttonState, setButtonState] = useState(false);
+
     // Set synonyms state
     const handleClick = (currentActive) => {
+        setButtonState(true);
         getSynonyms(
             clues[currentActive].clueText,
             currentActive,
@@ -44,13 +48,13 @@ const DisplaySynonyms = ({
         <div className="Synonyms">
             {!synonyms ? (
                 <div>
-                    Synonyms:
-                    <button disabled type="button" className="disabled">
+                    Synonyms:{' '}
+                    <button disabled="true" type="button" className="disabled">
                         {' '}
                         -{' '}
                     </button>
-                    <span> </span>
-                    <button onClick={() => handleClick(currentActive)}>
+                    {' '}
+                    <button disabled={buttonState} onClick={() => handleClick(currentActive)}>
                         {' '}
                         +{' '}
                     </button>{' '}
