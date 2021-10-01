@@ -1,5 +1,5 @@
-import React, { Fragment, useState, useEffect } from 'react';
-import getSynonyms from '../utils/getSynonyms';
+import React, { Fragment } from 'react';
+import getSynonyms from '../utils/synonyms/getSynonyms';
 
 const DisplaySynonyms = ({
     clues,
@@ -7,17 +7,11 @@ const DisplaySynonyms = ({
     appSynonyms,
     setAppSynonyms,
 }) => {
-    console.log(
-        'DisplaySynonyms',
-        clues,
-        currentActive,
-        appSynonyms,
-        setAppSynonyms
-    );
     if (!currentActive || !clues) return <div></div>;
     // Set state from parent
     const synonyms = appSynonyms[currentActive] || null;
 
+    // Set synonyms state
     const handleClick = (currentActive) => {
         getSynonyms(
             clues[currentActive].clueText,
@@ -27,6 +21,7 @@ const DisplaySynonyms = ({
         );
     };
 
+    // Mosift synonyms state with synonyms length
     const handleLength = (action) => {
         const updatedSynonyms = { ...appSynonyms };
         switch (action) {
@@ -42,14 +37,23 @@ const DisplaySynonyms = ({
                 return;
         }
     };
-    console.log('New synonyms', synonyms);
 
     return (
         <div className="Synonyms">
             {!synonyms ? (
-                <button onClick={() => handleClick(currentActive)}>
-                    Get synonyms
-                </button>
+                <div>
+                    Synonyms:
+                    <button type="button" className="disabled">
+                        {' '}
+                        -{' '}
+                    </button>
+                    <span> </span>
+                    <button onClick={() => handleClick(currentActive)}>
+                        {' '}
+                        +{' '}
+                    </button>
+                    <span> Characters: 0</span>
+                </div>
             ) : (
                 ''
             )}
@@ -74,7 +78,10 @@ const Synonyms = ({ synonyms, handleLength }) => {
     for (const s in synonyms.synonymData) {
         // Filter by length
         const synonymsArray = synonyms.synonymData[s].filter(
-            (syn) => syn.length === length
+            // Replace punctuation so multiple words match length
+            (syn) =>
+                syn.replace(/[.,\/#!$%\^&\*;:{}'=\-—_`~()]/g, '').length ===
+                length
         );
         // Sort by length
         synonymsArray.sort(function (a, b) {
@@ -88,13 +95,12 @@ const Synonyms = ({ synonyms, handleLength }) => {
                 </div>
             </Fragment>
         );
-        console.log(s);
     }
     // Synonyms Length Text
     let synonymsLengthText = '';
     synonyms.synonymLength
         ? (synonymsLengthText = `Characters: ${synonyms.synonymLength}`)
-        : (synonymsLengthText = '');
+        : (synonymsLengthText = 'Characters: 0');
 
     return (
         <div>
@@ -102,7 +108,7 @@ const Synonyms = ({ synonyms, handleLength }) => {
                 <b>Synonyms: </b>
                 <button onClick={() => handleLength('decrease')}> - </button>
                 <button onClick={() => handleLength('increase')}> + </button>
-                {synonymsLengthText}
+                <span> {synonymsLengthText}</span>
             </div>
             {synsArray.map((s) => (
                 <div>{s}</div>

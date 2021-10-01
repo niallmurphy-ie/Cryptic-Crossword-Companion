@@ -12,7 +12,7 @@ import {
     setLocalStorageInitialState,
     updateLocalStorage,
 } from './utils/localStorage';
-import DisplaySynonyms from './components/Synonyms';
+import DisplaySynonyms from './components/synonyms/DisplaySynonyms';
 
 function App() {
     const [clues, setClues] = useState(null);
