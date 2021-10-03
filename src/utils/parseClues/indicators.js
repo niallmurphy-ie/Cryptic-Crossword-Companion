@@ -1,7 +1,6 @@
 import { countWords } from './helperFunctions';
 // JSON
 import insertionWords from '../../data/insertionWords';
-import containmentWords from '../../data/containmentWords';
 import generalDeletionWords from '../../data/generalDeletionWords';
 import hiddenWords from '../../data/hiddenWords';
 import spoonerWords from '../../data/spoonerWords';
@@ -14,27 +13,25 @@ import juxtapositionWords from '../../data/juxtapositionWords';
 import homophoneWords from '../../data/homophoneWords';
 import anagramWords from '../../data/anagramWords';
 
+const clueTypes = [
+    ['anagram', anagramWords],
+    ['insertion', insertionWords],
+    ['deletion', generalDeletionWords],
+    ['hidden', hiddenWords],
+    ['spoon', spoonerWords],
+    ['letter movement', letterSwapWords],
+    ['reversal', reverseWords],
+    ['palindrome', palindromeWords],
+    ['linking', linkingWords],
+    ['letter selection', letterSelectionWords],
+    ['juxtaposition', juxtapositionWords],
+    ['homophones', homophoneWords],
+];
+
 // Check indicators
 function returnIndicators(clueText) {
     let returnArray = [];
-    /**
-     * Go through Indicators
-     *  */
-    const clueTypes = [
-        ['Anagrams', anagramWords],
-        ['Insertions', insertionWords],
-        ['Containment', containmentWords],
-        ['General Deletion', generalDeletionWords],
-        ['Hidden Words', hiddenWords],
-        ['Spooner', spoonerWords],
-        ['Letter Swap / Movement', letterSwapWords],
-        ['Reversal', reverseWords],
-        ['Palindrome', palindromeWords],
-        ['Linking Words', linkingWords],
-        ['Letter Selection', letterSelectionWords],
-        ['Juxtaposition', juxtapositionWords],
-        ['Homophones', homophoneWords],
-    ];
+
     // Get words from each type
     clueTypes.forEach((clueType) => {
         const result = parseIndicators(
@@ -44,8 +41,30 @@ function returnIndicators(clueText) {
         );
         if (result) returnArray.push(result);
     });
-    return returnArray;
+    return reverseIndicators(returnArray);
 }
+
+// Hacky reverse indicators for better readability.
+const reverseIndicators = (indicators) => {
+    const reversed = {};
+    indicators.forEach((o) => {
+        for (let type in o) {
+            const words = o[type];
+            words.forEach((w) => {
+                if (reversed[w]) reversed[w].push(type);
+                if (!reversed[w]) {
+                    reversed[w] = [type];
+                }
+            });
+        }
+    });
+    const reversed2 = [];
+    for (let section in reversed) {
+        reversed2.push({ [section]: reversed[section] });
+    }
+    return reversed2;
+};
+
 
 const parseIndicators = (type, clueText, words) => {
     var endArray = [];

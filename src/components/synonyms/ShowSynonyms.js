@@ -1,7 +1,6 @@
 import React, { Fragment, useState } from 'react';
 
 const ShowSynonyms = ({ synonyms, handleLength }) => {
-
     const length = synonyms.synonymLength;
     const synsArray = buildSynonyms(synonyms, length);
 
@@ -16,8 +15,14 @@ const ShowSynonyms = ({ synonyms, handleLength }) => {
     return (
         <div>
             <div>
-                Synonyms:
-                <button disabled={length < 2} onClick={() => handleLength('decrease')}> - </button>
+                <strong>Synonyms: </strong>
+                <button
+                    disabled={length < 2}
+                    onClick={() => handleLength('decrease')}
+                >
+                    {' '}
+                    -{' '}
+                </button>{' '}
                 <button onClick={() => handleLength('increase')}> + </button>
                 <span> {synonymsLengthText}</span>
             </div>

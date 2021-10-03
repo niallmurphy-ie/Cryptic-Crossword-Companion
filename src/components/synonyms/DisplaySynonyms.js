@@ -48,7 +48,7 @@ const DisplaySynonyms = ({
         <div className="Synonyms">
             {!synonyms ? (
                 <div>
-                    Synonyms:{' '}
+                    <strong>Synonyms: </strong>
                     <button disabled="true" type="button" className="disabled">
                         {' '}
                         -{' '}

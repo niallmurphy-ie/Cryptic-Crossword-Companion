@@ -20,9 +20,9 @@ const getSynonyms = async (
         responses.map((response) => {
             if (response) {
                 const syns = synonymsParse(response.value);
-                if (syns.length > 0) {
+                if (syns && syns.length > 0) {
                     const filtered = filterReturnedSynonyms(syns, clue);
-                    if (filtered.length > 0) {
+                    if (filtered && filtered.length > 0) {
                         synonyms[response.value.data[0].word] = filtered;
                     }
                 }
