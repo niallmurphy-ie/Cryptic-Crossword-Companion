@@ -3,6 +3,7 @@ import { countWords } from "./helperFunctions";
 import abbreviations from "../../data/abbreviations";
 
 const returnAbbreviations = (clue) => {
+  clue = clue.toLowerCase();
   var abbArray = [];
   // Loop abbreviations
   for (var abbreviation in abbreviations) {

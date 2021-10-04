@@ -30,6 +30,7 @@ const clueTypes = [
 
 // Check indicators
 function returnIndicators(clueText) {
+    clueText = clueText.toLowerCase();
     let returnArray = [];
 
     // Get words from each type

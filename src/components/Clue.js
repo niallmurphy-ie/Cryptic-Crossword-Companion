@@ -11,7 +11,6 @@ const Clue = ({ clues, currentActive, setClues }) => {
     return (
         <div key={clueShown.clueText}>
             <h4>{clueShown.clueText}</h4>
-            <div>
                 {clueShown.abbreviations ? (
                     <ClueHelpSection
                         key={JSON.stringify(clueShown.abbreviations)}
@@ -21,8 +20,6 @@ const Clue = ({ clues, currentActive, setClues }) => {
                 ) : (
                     ''
                 )}
-            </div>
-            <div>
                 {clueShown.indicators ? (
                     <ClueHelpSection
                         key={JSON.stringify(clueShown.indicators)}
@@ -32,7 +29,6 @@ const Clue = ({ clues, currentActive, setClues }) => {
                 ) : (
                     ''
                 )}
-            </div>
             <div className="clueHelperSection">
                 <DisplaySynonyms
                     key={'synonyms_' + clueShown.clueText}

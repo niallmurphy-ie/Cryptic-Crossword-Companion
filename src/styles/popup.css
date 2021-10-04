@@ -1,0 +1,11 @@
+.clueHelperSection {
+	padding-top: 15px;
+ }
+ .noteSection {
+	padding-top: 15px;
+ }
+ .noteSection textarea {
+	 width: 90%;
+	 min-height: 120px;
+	 padding: 10px;
+ }

@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Clue from './Clue';
 import addClueData from '../utils/addClueData';
 
-function Popup() {
+import css from '../styles/popup.css';
+
+const Popup = () => {
     const [input, setInput] = useState('');
     const [fakedClues, setFakedClues] = useState(null);
-    const fakedCurrentActive = 'popUpSearch';
 
     const handleChange = (event) => {
         setInput(event.target.value);
