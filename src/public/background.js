@@ -2,6 +2,7 @@
 const allowedURLs = [
   "https://www.theguardian.com/crosswords/quiptic/",
   "https://www.theguardian.com/crosswords/cryptic/",
+  "https://www.theguardian.com/crosswords/everyman/"
 ];
 
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {

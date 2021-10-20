@@ -1,3 +1,11 @@
+var splitToWords = require('split-to-words');
+
+export function splitWords(str) {
+    // Leave in ' for abbreviations
+    str = str.replace(/[.,\/#!?$%\^&\*;:{}=\-_`~]/g, '');
+    return splitToWords(str);
+}
+
 export function countWords(str) {
     return str.trim().split(/\s+/).length;
 }
