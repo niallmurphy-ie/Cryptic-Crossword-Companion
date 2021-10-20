@@ -1,5 +1,3 @@
-// Make async await work
-import '@babel/polyfill/noConflict'
 import React from 'react';
 import { render } from 'react-dom';
 

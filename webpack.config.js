@@ -9,8 +9,8 @@ module.exports = {
     historyApiFallback: true,
   },
   entry: {
-    popup: ['@babel/polyfill', path.resolve(__dirname, "./src/index-popup.js")],
-    foreground: ['@babel/polyfill', path.resolve(__dirname, "./src/index-foreground.js")],
+    popup: ['@babel/polyfill/noConflict', path.resolve(__dirname, "./src/index-popup.js")],
+    foreground: ['@babel/polyfill/noConflict', path.resolve(__dirname, "./src/index-foreground.js")],
   },
   output: {
     filename: "[name].bundle.js",
