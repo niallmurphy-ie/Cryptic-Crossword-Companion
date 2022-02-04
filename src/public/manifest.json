@@ -1,22 +1,36 @@
 {
-    "name": "Cryptic Crossword Helper",
-    "description": "Parse and give hints for clues on the Guardian",
-    "version": "0.1.0",
-    "manifest_version": 2,
-    "icons": {
-        "16": "./obj-16x16.png",
-        "32": "./obj-32x32.png",
-        "48": "./obj-48x48.png",
-        "128": "./obj-128x128.png"
-    },
-    "background": {
-        "scripts": ["./background.js"]
-    },
-    "browser_action": {
-        "default_popup": "popup.html"
-    },
-    "permissions": [
-        "tabs",
-        "<all_urls>"
-    ]
+	"name": "Cryptic Crossword Helper",
+	"description": "Parse and give hints for clues on the Guardian",
+	"version": "0.1.0",
+	"manifest_version": 3,
+	"icons": {
+		"16": "./obj-16x16.png",
+		"32": "./obj-32x32.png",
+		"48": "./obj-48x48.png",
+		"128": "./obj-128x128.png"
+	},
+	"background": {
+		"service_worker": "./background.js"
+	},
+	"action": {
+		"default_popup": "popup.html"
+	},
+	"host_permissions": [
+		"<all_urls>"
+	],
+	"permissions": [
+		"tabs",
+		"scripting"
+	],
+	"web_accessible_resources": [
+		{
+			"resources": [
+				"inject_script.js",
+				"foreground.bundle.js",
+				"popup.bundle.js"
+			],
+			"matches": [],
+			"extension_ids": []
+		}
+	]
 }
