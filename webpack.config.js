@@ -8,6 +8,7 @@ module.exports = {
     contentBase: path.resolve(__dirname, "./src"),
     historyApiFallback: true,
   },
+	devtool: 'source-map',
   entry: {
     popup: ['@babel/polyfill/noConflict', path.resolve(__dirname, "./src/index-popup.js")],
     foreground: ['@babel/polyfill/noConflict', path.resolve(__dirname, "./src/index-foreground.js")],

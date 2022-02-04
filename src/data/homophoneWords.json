@@ -28,17 +28,21 @@
         "listened",
         "mumbled",
         "on the radio",
+        "on radio",
         "on the telephone",
         "orally",
         "outspoken",
         "overheard",
         "pronounced",
+        "quoted",
         "read aloud",
+        "report of",
         "reported",
         "reportedly",
         "said",
         "say",
         "sound",
+        "sounds",
         "sounded",
         "sounding",
         "speaker's",
@@ -52,6 +56,7 @@
         "verbal",
         "verbally",
         "vocal",
-        "voiced"
+        "voiced",
+        "we hear"
     ]
 }
