@@ -1,4 +1,4 @@
-A Cryptic Crossword Companion.
+**Cryptic Crossword Companion.**
 
 I made this extenstion to help me improve at cryptic crosswords, and to reinforce some web development skills I've been learning. If people find it useful, I will add more websites. Suggestions and collaboration welcome.
 
@@ -26,4 +26,7 @@ npm run build:prod
 
 In chrome, Load unpacked extenstion from the dist folder.
 
-![Image of Cryptic Crossword Helper](https://i.imgur.com/1HtndmB.png)
+![Image of Cryptic Crossword Companion](https://i.imgur.com/4R7R0ne.png)
+
+
+*Thanks to https://dictionaryapi.dev/ for the service that provides the synonyms.*
