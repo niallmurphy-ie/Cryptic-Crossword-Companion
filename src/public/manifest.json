@@ -1,6 +1,6 @@
 {
 	"name": "Cryptic Crossword Helper",
-	"description": "Parse and give hints for clues on the Guardian",
+	"description": "Parse and give hints for clues on cryptic crossword websites.",
 	"version": "0.1.0",
 	"manifest_version": 3,
 	"icons": {
@@ -32,5 +32,8 @@
 			"matches": [],
 			"extension_ids": []
 		}
-	]
+	],
+	"content_security_policy": {
+		"extension_pages": "script-src 'self' ; script-src-elem 'self'; object-src 'self';"
+	}
 }

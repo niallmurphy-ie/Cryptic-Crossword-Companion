@@ -1,0 +1,8 @@
+GET https://synonyms.niallmurphy.dev/synonyms/
+Content-Type: application/json
+
+
+{
+  "word": "pose"
+}
+

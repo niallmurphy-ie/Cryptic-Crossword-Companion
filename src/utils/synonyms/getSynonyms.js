@@ -1,7 +1,6 @@
 import axios from 'axios';
 import {
 	synonymsParse,
-	filterReturnedSynonyms,
 	filterWords,
 } from './helperFunctions';
 
@@ -16,7 +15,7 @@ const getSynonyms = async (
 	const requests = [];
 	words.forEach((word) => {
 		requests.push(
-			axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
+			axios.post(`https://synonyms.niallmurphy.dev/synonyms/`, { word })
 		);
 	});
 	const responses = await Promise.allSettled(requests);
@@ -25,7 +24,7 @@ const getSynonyms = async (
 			if (response) {
 				const syns = synonymsParse(response.value);
 				if (syns && syns.length > 0) {
-					const filtered = filterReturnedSynonyms(syns, clue);
+					const filtered = syns.sort();
 					if (filtered && filtered.length > 0) {
 						synonyms[response.value.data[0].word] = filtered;
 					}

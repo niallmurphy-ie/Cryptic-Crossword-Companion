@@ -4,9 +4,9 @@ import abbreviations from '../../data/abbreviations';
 
 const returnAbbreviations = (clue) => {
 	clue = clue.toLowerCase();
-	var abbArray = [];
+	const abbArray = [];
 	// Loop abbreviations
-	for (var abbreviation in abbreviations) {
+	for (let abbreviation in abbreviations) {
 		// First check for included anywhere
 		abbreviation = abbreviation.toLowerCase();
 		if (clue.includes(abbreviation)) {
@@ -15,8 +15,7 @@ const returnAbbreviations = (clue) => {
 				abbArray.push({ [abbreviation]: abbreviations[abbreviation] });
 			} else {
 				// One word must be checked as it may be inside words
-				var split = splitWords(clue);
-				console.log(split, abbreviation);
+				const split = splitWords(clue);
 				if (split.includes(abbreviation)) {
 					abbArray.push({
 						[abbreviation]: abbreviations[abbreviation],
@@ -26,12 +25,12 @@ const returnAbbreviations = (clue) => {
 		}
 	}
 	return abbArray.sort((a, b) => {
-    const sa = clue.toLowerCase().indexOf(a);
-    const sb = clue.toLowerCase().indexOf(b);
-    if (sa < sb) return -1;
-    if (sa > sb) return 1;
-    return 0;
-  });
+		const sa = clue.toLowerCase().indexOf(a);
+		const sb = clue.toLowerCase().indexOf(b);
+		if (sa < sb) return -1;
+		if (sa > sb) return 1;
+		return 0;
+	});
 };
 
 export default returnAbbreviations;
