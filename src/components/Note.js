@@ -20,6 +20,7 @@ const Note = ({ notes, setNotes, currentActive }) => {
 		<div className="noteSection">
 			<div>Notes</div>
 			<textarea
+				style={{ fontFamily: 'monospace' }}
 				type="text"
 				name="textarea"
 				value={currentNote}

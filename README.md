@@ -1,14 +1,29 @@
 A Cryptic Crossword Companion.
 
-I made this to both help me get better at cryptic crosswords, and to practice some web development skills. If people like it, I will add more websites. Suggestions and collaboration welcome.
+I made this extenstion to help me improve at cryptic crosswords, and to reinforce some web development skills I've been learning. If people find it useful, I will add more websites. Suggestions and collaboration welcome.
 
-Sites supported: https://www.theguardian.com/crosswords/
+Features:
 
-To build the extension from the source files:\
-git clone https://github.com/niallmurphy-ie/Cryptic-Crossword-Companion.git\
-cd Cryptic-Crossword-Companion\
-npm install\
-npm run build:prod\
+ - Highlight crossword indicators such as anagrams, hidden words, homophones, etc.
+ - Provide abbreviations and synonyms.
+ - Persistent notes per clue stored in the browser.
+
+Enjoy.
+
+---
+Sites supported: \
+https://www.theguardian.com/crosswords/
+
+
+---
+
+To build the extension from the source files, run the following commands:\
+git clone https://github.com/niallmurphy-ie/Cryptic-Crossword-Companion.git \
+cd Cryptic-Crossword-Companion \
+npm install \
+npm run build:prod
+
+
 In chrome, Load unpacked extenstion from the dist folder.
 
 ![Image of Cryptic Crossword Helper](https://i.imgur.com/1HtndmB.png)
