@@ -1,4 +1,4 @@
-var splitToWords = require('split-to-words');
+const splitToWords = require('split-to-words');
 
 export function splitWords(str) {
     // Leave in ' for abbreviations

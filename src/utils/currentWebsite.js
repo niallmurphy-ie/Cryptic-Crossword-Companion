@@ -1,1 +1,1 @@
-export default "theguardian";
+export default "https://www.theguardian.com";

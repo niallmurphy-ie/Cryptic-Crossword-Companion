@@ -1,5 +1,7 @@
+import currentWebsite from './currentWebsite';
+
 const getLocalStorageKey = () => {
-	if (window.location.href.includes('https://www.theguardian.com')) {
+	if (window.location.href.includes(currentWebsite)) {
 		return 'crypticCrossWordNotes' + window.location.pathname;
 	}
 	return 'crypticCrossWordNotes';
