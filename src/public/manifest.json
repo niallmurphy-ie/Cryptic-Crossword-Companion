@@ -1,5 +1,5 @@
 {
-	"name": "Cryptic Crossword Helper",
+	"name": "Cryptic Crossword Companion",
 	"description": "Parse and give hints for clues on cryptic crossword websites.",
 	"version": "0.1.0",
 	"manifest_version": 3,
