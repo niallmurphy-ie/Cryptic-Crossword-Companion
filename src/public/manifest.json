@@ -19,7 +19,6 @@
 		"https://www.theguardian.com/crosswords/*/*"
 	],
 	"permissions": [
-		"tabs",
 		"scripting"
 	],
 	"web_accessible_resources": [
