@@ -46,6 +46,7 @@ function App() {
 
 	return (
 		<div className="appRendered">
+			{!currentActive && 'Please select a clue.'}
 			<Clue
 				key={'displayClue_' + currentActive}
 				clues={clues}

@@ -19,6 +19,7 @@
 		"https://www.theguardian.com/crosswords/*/*"
 	],
 	"permissions": [
+		"tabs",
 		"scripting"
 	],
 	"web_accessible_resources": [
@@ -28,7 +29,9 @@
 				"foreground.bundle.js",
 				"popup.bundle.js"
 			],
-			"matches": [],
+			"matches": [
+				"<all_urls>"
+			],
 			"extension_ids": []
 		}
 	]
