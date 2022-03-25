@@ -1,3 +1,5 @@
 node_modules
 dist
 todo.md
+dist.crx
+dist.pem
