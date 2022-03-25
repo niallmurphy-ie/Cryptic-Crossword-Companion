@@ -16,10 +16,9 @@
 		"default_popup": "popup.html"
 	},
 	"host_permissions": [
-		"<all_urls>"
+		"https://www.theguardian.com/crosswords/*/*"
 	],
 	"permissions": [
-		"tabs",
 		"scripting"
 	],
 	"web_accessible_resources": [
@@ -32,8 +31,5 @@
 			"matches": [],
 			"extension_ids": []
 		}
-	],
-	"content_security_policy": {
-		"extension_pages": "script-src 'self' ; script-src-elem 'self'; object-src 'self';"
-	}
+	]
 }
